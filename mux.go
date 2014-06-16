@@ -106,6 +106,7 @@ func (p *PatternServeMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			if len(params) > 0 {
 				r.URL.RawQuery = url.Values(params).Encode() + "&" + r.URL.RawQuery
 			}
+			r.Header.Set("X-Pat-Route", ph.pat)
 			ph.ServeHTTP(w, r)
 			return
 		}
